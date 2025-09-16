@@ -36,12 +36,6 @@
 ### Задание 2
 
 `-- Выводим таблицы и первичные ключи`  
-`SELECT  
-    TABLE_NAME AS 'Название таблицы',    
-    COLUMN_NAME AS 'Название первичного ключа'    
-FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE  
-WHERE TABLE_SCHEMA = DATABASE()  
-AND CONSTRAINT_NAME = 'PRIMARY'  
-ORDER BY TABLE_NAME;`  
-![tabels](./img/sql_1_4.png)  
+`SELECT TABLE_NAME AS 'Название таблицы', COLUMN_NAME AS 'Название первичного ключа' FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'PRIMARY' ORDER BY TABLE_NAME;`  
+![tabels](./img/sql_2_1.png)  
 [tables.txt](sql_2.txt)
