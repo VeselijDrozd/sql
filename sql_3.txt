@@ -20,7 +20,7 @@ WHERE length > (SELECT AVG(length) from film)
 
 3)
 USE sakila;
-SELECT SUM(amount) AS total_sum, MONTH(payment_date) AS payment_month
+SELECT SUM(amount) AS total_sum, DATE_FORMAT(payment_date, '%M %Y') AS payment_month
 FROM payment
-GROUP BY MONTH(payment_date)
+GROUP BY DATE_FORMAT(payment_date, '%M %Y')
 ORDER BY SUM(amount) DESC LIMIT 1;
