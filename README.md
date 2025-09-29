@@ -11,7 +11,7 @@
 
 ### Задание 2  
  
-[Listing](replica.txt)
+[Listing](Listing.txt)
 
 `Master`  
 ![Master](./img/task2_master1.png)  
