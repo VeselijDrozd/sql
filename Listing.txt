@@ -1,0 +1,24 @@
+[Master]
+
+postgresql.conf:
+  listen_addresses = 'localhost,192.168.60.4'
+  wal_level        = replica
+  max_wal_senders  = 10
+  wal_keep_size    = 1024
+  hot_standby      = on
+  
+pg_hba.conf:
+  host    replication     replicator      192.168.60.5/24         md5
+  host    replication     replicator      0.0.0.0/0               md5
+  
+  psql > CREATE USER replicator WITH REPLICATION ENCRYPTED PASSWORD 'you_shall_not_pass';
+  shell> sudo systemctl restart postgresql
+
+[Slave]
+
+postgresql.conf:
+  hot_standby = on
+  
+  shell> sudo -u postgres pg_basebackup -h 192.168.60.4 -D /var/lib/postgresql/18/main -U replicator -P -v -R -W \
+         && sudo -u postgres touch /var/lib/postgresql/*/main/standby.signal \
+         && sudo systemctl restart postgresql
